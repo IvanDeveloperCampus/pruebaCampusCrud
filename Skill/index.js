@@ -1,4 +1,4 @@
-import { getSkill } from "./ApiSkill.js"
+import { getSkill, addSkill } from "./ApiSkill.js"
 
 addEventListener("DOMContentLoaded", () => {
     obtenerSkill();
@@ -22,3 +22,11 @@ async function obtenerSkill() {
     })
     tableSkill.innerHTML = html;
 }
+
+const form =document.querySelector("#formularioSkill")
+
+form.addEventListener("submit", (e)=>{
+    e.preventDefault()
+  const data=Object.fromEntries(new FormData(e.target))
+  addSkill(data)
+})

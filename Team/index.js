@@ -1,4 +1,4 @@
-import { getTeam } from "./ApiTeam.js"
+import { getTeam, addTeam } from "./ApiTeam.js"
 
 addEventListener("DOMContentLoaded", () => {
     obtenerTeam();
@@ -7,7 +7,6 @@ addEventListener("DOMContentLoaded", () => {
 async function obtenerTeam() {
     const teams = await getTeam();
     const tableTrainer = document.querySelector("#teams")
-    console.log(teams);
     let html = "";
     teams.map((item) => {
         html += `
@@ -24,3 +23,11 @@ async function obtenerTeam() {
     })
     tableTrainer.innerHTML = html;
 }
+
+const form=document.querySelector("#formularioTeam")
+
+form.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const data=Object.fromEntries(new FormData(e.target))
+    addTeam(data);
+})

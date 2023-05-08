@@ -1,4 +1,5 @@
-import { getModulo } from "./ApiModulo.js"
+import { getModulo, addModulo } from "./ApiModulo.js"
+import { getSkill} from "../Skill/ApiSkill.js"
 
 addEventListener("DOMContentLoaded", () => {
     obtenerModulo();
@@ -23,4 +24,24 @@ async function obtenerModulo() {
         `
     })
     tableModulos.innerHTML = html;
+
+    const skills= await getSkill();
+  const skillSelect= document.querySelector("#selectSkill");
+  let html2 = "";
+  skills.forEach((skill) => {
+    const { id, nombre } = skill;
+    html2 += `
+    <option value=${id}>${nombre}</option>
+          `;
+  });
+  skillSelect.innerHTML = html2;
 }
+
+
+const form =document.querySelector("#formularioModulo")
+
+form.addEventListener("submit", (e)=>{
+    e.preventDefault()
+  const data=Object.fromEntries(new FormData(e.target))
+ addModulo(data)
+})

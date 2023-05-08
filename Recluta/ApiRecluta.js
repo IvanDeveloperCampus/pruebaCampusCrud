@@ -17,6 +17,18 @@ export const addRecluta = async (user) => {
     }
 }
 
+export const getReclutByTeam=async(idTeam)=>{
+    try {
+        const response = await fetch(`${url}?teamId=${idTeam}`)
+        const result = await response.json()
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
 export const getRecluta = async () => {
     try {
         const response = await fetch(`${url}`)
