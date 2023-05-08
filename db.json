@@ -1,17 +1,41 @@
 {
-    "team":[
-      
-    ],
-    "recluta":[
-      
-    ],
-    "skill":[
-
-    ],
-    "moduloskill":[
-
-    ],
-    "evaluacion":[
-
-    ]
+  "team": [
+    {
+      "nombre": "Sputnik",
+      "trainer": "Miguel",
+      "id": 1
+    }
+  ],
+  "recluta": [
+    {
+      "nombre": "Andrea",
+      "edad": 20,
+      "identificacion": 100055421,
+      "telefono": 3122541,
+      "fechaIngreso": "27/02/2022",
+      "teamId": 1,
+      "id": 2
+    }
+  ],
+  "skill": [
+    {
+      "nombre": "Javascript",
+      "id": 1
+    }
+  ],
+  "moduloskill": [
+    {
+      "nombre": "Frontend",
+      "skillId": 1,
+      "id": 1
+    }
+  ],
+  "evaluacion": [
+    {
+      "nota": "90",
+      "reclutaId": 2,
+      "moduloId": 1,
+      "id": 1
+    }
+  ]
 }
