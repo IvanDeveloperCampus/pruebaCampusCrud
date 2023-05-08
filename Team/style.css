@@ -24,6 +24,8 @@ body{
     
 }
 .main h1{
+    display: flex;
+    flex-wrap: wrap;
     color: aliceblue;
     font-size: 50px;
     font-weight: 500;
@@ -34,3 +36,9 @@ body{
     margin-top: 5rem;
 }
 
+@media (max-width: 800px) {
+    .main{
+        margin-left: -5rem;
+    }
+  
+  }

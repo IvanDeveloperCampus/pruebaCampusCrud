@@ -20,8 +20,7 @@ async function obtenerEvaluacion() {
                 <td>${item.nota}</td>
                 <td>${item.reclutaId}</td>
                 <td>${item.moduloId}</td>
-                <td ><a href="#" id_team=${item.id} class="btn btn-success editar"data-bs-toggle="modal"
-   data-bs-target="#update">Editar</a></td>
+                
    <td ><a href="#" id_evaluacion="${item.id}" class="btn btn-danger eliminar">Eliminar</a></td>
  </tr>
             </tr>

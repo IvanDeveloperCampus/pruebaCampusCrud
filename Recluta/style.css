@@ -31,3 +31,11 @@ body{
     font-weight: 500;
     margin-top: 5rem;
 }
+
+
+@media (max-width: 800px) {
+    .main{
+        margin-left: -5rem;
+    }
+  
+  }

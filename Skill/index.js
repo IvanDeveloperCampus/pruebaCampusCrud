@@ -15,8 +15,7 @@ async function obtenerSkill() {
             <tr>
                 <td>${item.id}</td>
                 <td>${item.nombre}</td>
-                <td ><a href="#" id_skill=${item.id} class="btn btn-success editar"data-bs-toggle="modal"
-   data-bs-target="#update">Editar</a></td>
+               
    <td ><a href="#" id_skill="${item.id}" class="btn btn-danger eliminar">Eliminar</a></td>
  </tr>
             </tr>

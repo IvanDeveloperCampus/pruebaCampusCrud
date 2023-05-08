@@ -22,8 +22,6 @@ async function obtenerReclutas(){
    <td>${item.telefono}</td>
    <td>${item.fechaIngreso}</td>
    <td>${item.teamId}</td>
-   <td ><a href="#" idReclutador=${item.id} class="btn btn-success editar"data-bs-toggle="modal"
-   data-bs-target="#update">Editar</a></td>
    <td ><a href="#" id_reclutador="${item.id}" class="btn btn-danger eliminar">Eliminar</a></td>
  </tr>
          `;
