@@ -1,12 +1,14 @@
-import { getSkill, addSkill } from "./ApiSkill.js"
+import { getSkill, addSkill, eliminarSkill } from "./ApiSkill.js"
 
 addEventListener("DOMContentLoaded", () => {
     obtenerSkill();
 })
 
+const tableSkill = document.querySelector("#skills")
+
 async function obtenerSkill() {
     const skills = await getSkill();
-    const tableSkill = document.querySelector("#skills")
+  
     let html = "";
     skills.map((item) => {
         html += `
@@ -30,3 +32,10 @@ form.addEventListener("submit", (e)=>{
   const data=Object.fromEntries(new FormData(e.target))
   addSkill(data)
 })
+
+tableSkill.addEventListener("click", (e)=>{
+    if(e.target.classList.contains("eliminar")){
+        const id=e.target.getAttribute("id_skill")
+        eliminarSkill(id)
+    }
+  })

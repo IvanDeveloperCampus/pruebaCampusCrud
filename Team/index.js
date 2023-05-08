@@ -1,12 +1,13 @@
-import { getTeam, addTeam } from "./ApiTeam.js"
+import { getTeam, addTeam, eliminarTean } from "./ApiTeam.js"
 
 addEventListener("DOMContentLoaded", () => {
     obtenerTeam();
 })
+const tableTrainer = document.querySelector("#teams")
 
 async function obtenerTeam() {
     const teams = await getTeam();
-    const tableTrainer = document.querySelector("#teams")
+   
     let html = "";
     teams.map((item) => {
         html += `
@@ -31,3 +32,10 @@ form.addEventListener("submit", (e)=>{
     const data=Object.fromEntries(new FormData(e.target))
     addTeam(data);
 })
+
+tableTrainer.addEventListener("click", (e)=>{
+    if(e.target.classList.contains("eliminar")){
+        const id=e.target.getAttribute("id_team")
+        eliminarTean(id)
+    }
+  })

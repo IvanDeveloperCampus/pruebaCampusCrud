@@ -1,7 +1,7 @@
-import {getRecluta, addRecluta ,getReclutByTeam} from "./ApiRecluta.js" 
+import {getRecluta, addRecluta ,getReclutByTeam, eliminarRecluta} from "./ApiRecluta.js" 
 import {getTeam} from "../Team/ApiTeam.js"
 
-
+const rec=document.querySelector("#reclutadores")
 
 document.addEventListener("DOMContentLoaded", () => {
     obtenerReclutas();
@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function obtenerReclutas(){
     const result=await getRecluta();
-    const rec=document.querySelector("#reclutadores")
     let html="";
     result.map((item)=>{
         html += `
@@ -54,7 +53,7 @@ e.preventDefault();
 
 async  function listar(id){
   const result=await getReclutByTeam(id);
-  const rec=document.querySelector("#reclutadores")
+  
   let html="";
   result.map((item)=>{
       html += `
@@ -85,3 +84,12 @@ formularioAgregar.addEventListener("submit", (e)=>{
   addRecluta(data)
 
 })
+
+rec.addEventListener("click", (e)=>{
+  if(e.target.classList.contains("eliminar")){
+      const id=e.target.getAttribute("id_reclutador")
+      eliminarRecluta(id)
+  }
+})
+
+

@@ -4,11 +4,6 @@
       "nombre": "Sputnik",
       "trainer": "Miguel",
       "id": 1
-    },
-    {
-      "nombre": "Artemis",
-      "trainer": "Vermen",
-      "id": 2
     }
   ],
   "recluta": [
@@ -31,15 +26,6 @@
       "id": 1
     },
     {
-      "nombre": "Juan",
-      "edad": 20,
-      "identificacion": 100055421,
-      "telefono": 3122541,
-      "fechaIngreso": "27/02/2022",
-      "teamId": 3,
-      "id": 3
-    },
-    {
       "nombre": "Junior",
       "identificacion": "125645",
       "telefono": "36598414",
@@ -57,10 +43,6 @@
     {
       "nombre": "Html",
       "id": 2
-    },
-    {
-      "nombre": "Mysql",
-      "id": 3
     }
   ],
   "moduloskill": [
@@ -68,11 +50,6 @@
       "nombre": "Frontend",
       "skillId": 1,
       "id": 1
-    },
-    {
-      "nombre": "Base de datos",
-      "skillId": "3",
-      "id": 2
     }
   ],
   "evaluacion": [
@@ -81,12 +58,6 @@
       "reclutaId": 2,
       "moduloId": 1,
       "id": 1
-    },
-    {
-      "nota": "60",
-      "moduloId": "2",
-      "reclutaId": "3",
-      "id": 2
     }
   ]
 }

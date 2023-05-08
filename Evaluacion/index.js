@@ -1,4 +1,4 @@
-import { getEvaluacion, addEvaluacion } from "./ApiEvaluacion.js"
+import { getEvaluacion, addEvaluacion, eliminarEvaluacion } from "./ApiEvaluacion.js"
 import { getModulo } from "../Modulo_Skill/ApiModulo.js"
 import { getRecluta } from "../Recluta/ApiRecluta.js"
 
@@ -6,9 +6,11 @@ addEventListener("DOMContentLoaded", () => {
     obtenerEvaluacion();
 })
 
+const tableEvaluaciones = document.querySelector("#evaluaciones")
+
 async function obtenerEvaluacion() {
     const evaluaciones = await getEvaluacion();
-    const tableEvaluaciones = document.querySelector("#evaluaciones")
+  
     console.log(evaluaciones);
     let html = "";
     evaluaciones.map((item) => {
@@ -20,7 +22,7 @@ async function obtenerEvaluacion() {
                 <td>${item.moduloId}</td>
                 <td ><a href="#" id_team=${item.id} class="btn btn-success editar"data-bs-toggle="modal"
    data-bs-target="#update">Editar</a></td>
-   <td ><a href="#" id_team="${item.id}" class="btn btn-danger eliminar">Eliminar</a></td>
+   <td ><a href="#" id_evaluacion="${item.id}" class="btn btn-danger eliminar">Eliminar</a></td>
  </tr>
             </tr>
         `
@@ -61,3 +63,10 @@ form.addEventListener("submit", (e)=>{
   const data=Object.fromEntries(new FormData(e.target))
  addEvaluacion(data)
 })
+
+tableEvaluaciones.addEventListener("click", (e)=>{
+    if(e.target.classList.contains("eliminar")){
+        const id=e.target.getAttribute("id_evaluacion")
+        eliminarEvaluacion(id)
+    }
+  })
