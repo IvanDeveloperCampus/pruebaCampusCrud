@@ -43,13 +43,27 @@
     {
       "nombre": "Html",
       "id": 2
+    },
+    {
+      "nombre": "Mysql",
+      "id": 3
     }
   ],
   "moduloskill": [
     {
-      "nombre": "Frontend",
-      "skillId": 1,
+      "nombre": "FrontEnd",
+      "skillId": "2",
       "id": 1
+    },
+    {
+      "nombre": "Base de datos",
+      "skillId": "3",
+      "id": 2
+    },
+    {
+      "nombre": "FrontEnd",
+      "skillId": "1",
+      "id": 3
     }
   ],
   "evaluacion": [

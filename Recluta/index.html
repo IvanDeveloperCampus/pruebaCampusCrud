@@ -19,9 +19,9 @@
             <div class="main">
 
 
-                <h1>RECLUTADOS</h1>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Launch demo modal
+                <h1>SISTEMA DE RECLUTADOS</h1>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Nuevo Recluta
                 </button>
 
                 <!-- Modal -->
@@ -30,7 +30,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Recluta</h1>
+                                <h2 class="modal-title fs-5" id="exampleModalLabel">Nuevo Recluta</h2>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -81,14 +81,13 @@
                 </div>
 
 
+                <section class="filtros mt-5">
+                    <form id="porTeam" class="text-center">
+                        
+                        <select name="" id="idTeamm" class="form-select">
 
-
-
-                <h2>Filtro de Busqueda por</h2>
-                <section class="filtros">
-                    <form id="porTeam">
-                        <input type="number" placeholder="Ingrese id del team a filtrar" id="idTeamm">
-                        <input type="submit" value="Buscar">
+                        </select>
+                        <input type="submit" value="Buscar" class="btn btn-secondary mt-3">
                     </form>
                 </section>
 

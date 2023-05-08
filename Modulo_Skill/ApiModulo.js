@@ -26,6 +26,16 @@ export const getModulo = async () => {
     }
 }
 
+export const getModuloBySkill = async (idSkill) => {
+    try {
+        const response = await fetch(`${url}?skillId=${idSkill}`)
+        const result = await response.json()
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const editarModulo=async ()=>{
     
 }

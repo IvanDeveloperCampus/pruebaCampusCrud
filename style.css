@@ -13,3 +13,17 @@ body{
     background: url(https://res.cloudinary.com/muhammederdem/image/upload/v1536405234/starwars/death_star.jpg) center no-repeat;
     
 }
+
+.main{
+    overflow-y: auto;
+	height: 100vh;
+	padding-bottom: 5rem;
+    margin-left: 25rem;
+    
+}
+.main h1{
+    color: aliceblue;
+    font-size: 90px;
+    font-weight: 500;
+    margin-top: 7rem;
+}

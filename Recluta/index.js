@@ -40,6 +40,17 @@ async function obtenerReclutas(){
           `;
   });
   teamSelect.innerHTML = html2;
+
+  const idTeamm=document.querySelector("#idTeamm")
+  let html3=""
+  teams.forEach((team) => {
+    const { id, nombre } = team;
+    html3 += `
+    <option value=${id}>${nombre}</option>
+          `;
+  });
+  idTeamm.innerHTML = html3;
+  
 }
 
 const form=document.querySelector("#porTeam")
