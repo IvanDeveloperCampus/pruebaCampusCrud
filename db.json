@@ -9,6 +9,11 @@
       "nombre": "Artemis",
       "trainer": "Vermen",
       "id": 2
+    },
+    {
+      "nombre": "Apolo",
+      "trainer": "Jolver",
+      "id": 3
     }
   ],
   "recluta": [
