@@ -1,54 +1,29 @@
-import {getRecluta, addRecluta ,getReclutByTeam, eliminarRecluta} from "./ApiRecluta.js" 
-import {getTeam} from "../Team/ApiTeam.js"
+import {addRecluta ,eliminarRecluta} from "./ApiRecluta.js" 
+
 
 const rec=document.querySelector("#reclutadores")
 
 document.addEventListener("DOMContentLoaded", () => {
     obtenerReclutas();
   });
+  const ws=new Worker("./worker.js", {type:"module"})
 
-
-async function obtenerReclutas(){
-    const result=await getRecluta();
-    let html="";
-    result.map((item)=>{
-        html += `
-   <tr>
-            
-   <td>${item.id}</td>
-   <td>${item.nombre}</td>
-   <td>${item.identificacion}</td>
-   <td>${item.edad}</td>
-   <td>${item.telefono}</td>
-   <td>${item.fechaIngreso}</td>
-   <td>${item.teamId}</td>
-   <td ><a href="#" id_reclutador="${item.id}" class="btn btn-danger eliminar">Eliminar</a></td>
- </tr>
-         `;
+function obtenerReclutas(){
+   
+    ws.postMessage({module:"obtenerRegistroReclutas"})
+    ws.postMessage({module:"obtenerTeams"})
+    let cont=0
+    ws.addEventListener("message", (e)=>{
+      if (cont === 0) {
+        rec.insertAdjacentHTML("beforeend", e.data)
+        cont++;
+      }
+      if (cont === 1) {
+        document.querySelector("#selectTeam").insertAdjacentHTML("beforeend", e.data)
+        document.querySelector("#idTeamm").insertAdjacentHTML("beforeend", e.data)
+      }
     })
-    rec.innerHTML=html;
-
-    const teams= await getTeam();
-  const teamSelect= document.querySelector("#selectTeam");
-  let html2 = "";
-  teams.forEach((team) => {
-    const { id, nombre } = team;
-    html2 += `
-    <option value=${id}>${nombre}</option>
-          `;
-  });
-  teamSelect.innerHTML = html2;
-
-  const idTeamm=document.querySelector("#idTeamm")
-  let html3=""
-  teams.forEach((team) => {
-    const { id, nombre } = team;
-    html3 += `
-    <option value=${id}>${nombre}</option>
-          `;
-  });
-  idTeamm.innerHTML = html3;
-  
+   
 }
 
 const form=document.querySelector("#porTeam")
@@ -60,28 +35,12 @@ e.preventDefault();
   listar(id);
 })
 
-async  function listar(id){
-  const result=await getReclutByTeam(id);
-  
-  let html="";
-  result.map((item)=>{
-      html += `
- <tr>
-          
- <td>${item.id}</td>
- <td>${item.nombre}</td>
- <td>${item.identificacion}</td>
- <td>${item.edad}</td>
- <td>${item.telefono}</td>
- <td>${item.fechaIngreso}</td>
- <td>${item.teamId}</td>
- <td ><a href="#" idReclutador=${item.id} class="btn btn-success editar"data-bs-toggle="modal"
- data-bs-target="#update">Editar</a></td>
- <td ><a href="#" id_reclutador="${item.id}" class="btn btn-danger eliminar">Eliminar</a></td>
-</tr>
-       `;
+function listar(id){
+  ws.postMessage({module:"obtenerReclutaById", data:id})
+  ws.addEventListener("message", (e)=>{
+    rec.innerHTML="";
+    rec.insertAdjacentHTML("beforeend", e.data)
   })
-  rec.innerHTML=html; 
 }
 
 

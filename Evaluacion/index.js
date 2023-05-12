@@ -1,56 +1,23 @@
-import { getEvaluacion, addEvaluacion, eliminarEvaluacion } from "./ApiEvaluacion.js"
-import { getModulo } from "../Modulo_Skill/ApiModulo.js"
-import { getRecluta } from "../Recluta/ApiRecluta.js"
+import { addEvaluacion, eliminarEvaluacion } from "./ApiEvaluacion.js";
 
 addEventListener("DOMContentLoaded", () => {
-    obtenerEvaluacion();
+    obtenerDatos();
 })
 
-const tableEvaluaciones = document.querySelector("#evaluaciones")
 
-async function obtenerEvaluacion() {
-    const evaluaciones = await getEvaluacion();
-  
-    console.log(evaluaciones);
-    let html = "";
-    evaluaciones.map((item) => {
-        html += `
-            <tr>
-                <td>${item.id}</td>
-                <td>${item.nota}</td>
-                <td>${item.reclutaId}</td>
-                <td>${item.moduloId}</td>
-                
-   <td ><a href="#" id_evaluacion="${item.id}" class="btn btn-danger eliminar">Eliminar</a></td>
- </tr>
-            </tr>
-        `
+const obtenerDatos=()=>{
+    const ws=new Worker("./worker.js", {type: "module"})
+    ws.postMessage({module:"obtenerRegistrosEvaluacion"})
+    ws.postMessage({module:"registrosModulos"})
+    ws.postMessage({module:"registrosReclutas"})
+    const selectores=["#evaluaciones", "#selectModulo", "#selectRecluta"]
+    let cont=0;
+    ws.addEventListener("message", (e)=>{
+        document.querySelector(`${selectores[cont]}`).insertAdjacentHTML("beforeend", e.data)
+        
+        selectores.length - 1 == cont ? ws.terminate : cont++;
     })
-    tableEvaluaciones.innerHTML = html;
 
-
-    const modulos=await getModulo();
-    const moduloSelect=document.querySelector("#selectModulo")
-    let html2 = "";
-    modulos.map((modulo)=>{
-        const { id, nombre } = modulo;
-    html2 += `
-    <option value=${id}>${nombre}</option>
-          `;
-  });
-  moduloSelect.innerHTML=html2
-
-  const reclutas=await getRecluta();
-    const reclutaSelect=document.querySelector("#selectRecluta")
-    let html3= "";
-    reclutas.map((recluta)=>{
-        const { id, nombre } = recluta;
-    html3 += `
-    <option value=${id}>${nombre}</option>
-          `;
-  });
-  reclutaSelect.innerHTML=html3
-   
 
 }
 
@@ -62,6 +29,8 @@ form.addEventListener("submit", (e)=>{
   const data=Object.fromEntries(new FormData(e.target))
  addEvaluacion(data)
 })
+
+const tableEvaluaciones=document.querySelector("#evaluaciones")
 
 tableEvaluaciones.addEventListener("click", (e)=>{
     if(e.target.classList.contains("eliminar")){

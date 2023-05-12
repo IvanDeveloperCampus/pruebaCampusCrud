@@ -6,22 +6,13 @@ addEventListener("DOMContentLoaded", () => {
 
 const tableSkill = document.querySelector("#skills")
 
-async function obtenerSkill() {
-    const skills = await getSkill();
-  
-    let html = "";
-    skills.map((item) => {
-        html += `
-            <tr>
-                <td>${item.id}</td>
-                <td>${item.nombre}</td>
-               
-   <td ><a href="#" id_skill="${item.id}" class="btn btn-danger eliminar">Eliminar</a></td>
- </tr>
-            </tr>
-        `
+function obtenerSkill() {
+    const ws = new Worker("./worker.js", { type: "module" })
+    ws.postMessage({ module: "obtenerRegistroSkills" })
+    ws.addEventListener("message", (e) => {
+
+        tableSkill.insertAdjacentHTML("beforeend", e.data)
     })
-    tableSkill.innerHTML = html;
 }
 
 const form =document.querySelector("#formularioSkill")

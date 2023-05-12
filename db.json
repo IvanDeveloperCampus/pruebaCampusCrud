@@ -4,6 +4,11 @@
       "nombre": "Sputnik",
       "trainer": "Miguel",
       "id": 1
+    },
+    {
+      "nombre": "Artemis",
+      "trainer": "Vermen",
+      "id": 2
     }
   ],
   "recluta": [
